@@ -1,18 +1,41 @@
 import { useState } from 'react';
-import { ActivityIndicator, Button, Image, ImageBackground, Modal, Pressable, ScrollView, StatusBar, Text, View } from 'react-native';
+import { ActivityIndicator, Alert, Button, Image, ImageBackground, Modal, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import Greet from './components/Greet';
 const logoImg = require("./assets/adaptive-icon.png")
 
 const App = () => {
 
   const [ isModalVisible,setIsModalVisible] = useState(false);
 
+  const styles = StyleSheet.create({
+    container: { flex:1,backgroundColor:"plum",padding:20 }
+  })
   return (
-   <View style={{ flex:1,backgroundColor:"plum",padding:20}}>
+   <View style={styles.container}>
     {/* <StatusBar backgroundColor={'plum'} barStyle={'dark-content'} /> */}
-    <ActivityIndicator/>
+
+    {/* ACTIVITY INDICATOR! */}
+    {/* <ActivityIndicator/>
     <ActivityIndicator size={'large'}/>
     <ActivityIndicator size={'large'} color={'midnightblue'}/>
-    <ActivityIndicator size={'large'} color={'midnightblue'} animating={false}/>
+    <ActivityIndicator size={'large'} color={'midnightblue'} animating={false}/> */}
+
+    {/* ALERT */}
+    <Button title='Alert'  onPress={()=> Alert.alert('Invalid Data!')}/>
+    <Button title='Alert2'  onPress={()=> Alert.alert('Invalid Data!','DOB is incorrect')}/>
+    <Button title='Alert3'  onPress={()=> Alert.alert('Invalid Data!','DOB is incorrect',[
+      {
+        text: "Cancel",
+        onPress:()=>{console.log('Cancel is Pressed!')}
+      },
+      {
+        text: "OK",
+        onPress:()=>{console.log('OK is Pressed!')}
+      }
+    ])}/>
+
+    {/* PROP  */}
+    {/* <Greet name='Felix'/> */}
     <ScrollView>
      
      <Pressable onPress={()=> console.log('Image Pressed!')}>
