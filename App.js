@@ -1,12 +1,18 @@
 import { useState } from 'react';
-import { Button, Image, ImageBackground, Modal, Pressable, ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, Button, Image, ImageBackground, Modal, Pressable, ScrollView, StatusBar, Text, View } from 'react-native';
 const logoImg = require("./assets/adaptive-icon.png")
 
 const App = () => {
 
   const [ isModalVisible,setIsModalVisible] = useState(false);
+
   return (
    <View style={{ flex:1,backgroundColor:"plum",padding:20}}>
+    {/* <StatusBar backgroundColor={'plum'} barStyle={'dark-content'} /> */}
+    <ActivityIndicator/>
+    <ActivityIndicator size={'large'}/>
+    <ActivityIndicator size={'large'} color={'midnightblue'}/>
+    <ActivityIndicator size={'large'} color={'midnightblue'} animating={false}/>
     <ScrollView>
      
      <Pressable onPress={()=> console.log('Image Pressed!')}>
