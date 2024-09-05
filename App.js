@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ActivityIndicator, Alert, Button, Image, ImageBackground, Modal, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import Greet from './components/Greet';
+import Box from './components/Box';
 const logoImg = require("./assets/adaptive-icon.png")
 
 const App = () => {
@@ -84,6 +85,16 @@ const App = () => {
           <Button title='Close Modal' color='brown' onPress={()=> setIsModalVisible(false)}/>
       </View>
     </Modal>
+    {/* LAYOUT - FLEX */}
+    <View style={{  backgroundColor:"orangered",borderWidth:2,borderColor:"red",display:'flex',flexDirection:"column"}}>
+    <Box style={{backgroundColor:"saddlebrown"}}>Box 1</Box>
+    <Box style={{backgroundColor:"navy",flexBasis:140}}>Box 2</Box>
+    <Box style={{backgroundColor:"green"}}>Box 3</Box>
+    <Box style={{backgroundColor:"goldenyellow"}}>Box 4</Box>
+    <Box style={{backgroundColor:"lightcoral"}}>Box 5</Box>
+    <Box style={{backgroundColor:"lightgreen"}}>Box 6</Box>
+    <Box style={{backgroundColor:"aqua"}}>Box 7</Box>
+    </View>
     </ScrollView>
    </View>
   )
