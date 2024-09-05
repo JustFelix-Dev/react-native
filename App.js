@@ -8,11 +8,19 @@ const App = () => {
   const [ isModalVisible,setIsModalVisible] = useState(false);
 
   const styles = StyleSheet.create({
-    container: { flex:1,backgroundColor:"plum",padding:20 }
+    container: { flex:1,backgroundColor:"plum",padding:30 },
+    box:{height:100,width:100,padding:2},
+    lightgreen:{ backgroundColor:'lightgreen' },
+    lightblue:{ backgroundColor:'lightblue' }
   })
+
   return (
    <View style={styles.container}>
     {/* <StatusBar backgroundColor={'plum'} barStyle={'dark-content'} /> */}
+
+    {/* MULTIPLE STYLES*/}
+    <Text style={[styles.box,styles.lightgreen]}>I am a light green box</Text>
+    <Text style={[styles.box,styles.lightblue]}  >I am a light blue box</Text>
 
     {/* ACTIVITY INDICATOR! */}
     {/* <ActivityIndicator/>
