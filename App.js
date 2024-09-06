@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ActivityIndicator, Alert, Button, Image, ImageBackground, Modal, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, Alert, Button, Dimensions, Image, ImageBackground, Modal, Pressable, ScrollView, StatusBar, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Greet from './components/Greet';
 import Box from './components/Box';
 const logoImg = require("./assets/adaptive-icon.png")
@@ -7,6 +7,27 @@ const logoImg = require("./assets/adaptive-icon.png")
 const App = () => {
 
   const [ isModalVisible,setIsModalVisible] = useState(false);
+  // const [ dimensions,setDimensions] = useState({
+  //   window: Dimensions.get('window')
+  // })
+
+  // useEffect(()=>{
+  // const subscription = Dimensions.addEventListener('change',({window})=>{
+  //   setDimensions({window})
+  // });
+
+  // return ()=> subscription?.remove();
+  // })
+
+  // const { window } = dimensions;
+  // const windowWidth = window.width;
+  // const windowHeight = window.height;
+
+  const windowHeight = useWindowDimensions().height;
+  const windowWidth = useWindowDimensions().width;
+
+
+  // console.log({ windowHeight,windowWidth })
 
   const styles = StyleSheet.create({
     container: { flex:1,backgroundColor:"plum",padding:30 },
@@ -85,6 +106,7 @@ const App = () => {
           <Button title='Close Modal' color='brown' onPress={()=> setIsModalVisible(false)}/>
       </View>
     </Modal>
+
     {/* LAYOUT - FLEX */}
     <View style={{  backgroundColor:"orangered",borderWidth:2,borderColor:"red",display:'flex',flexDirection:"column"}}>
     <Box style={{backgroundColor:"saddlebrown"}}>Box 1</Box>
@@ -95,6 +117,11 @@ const App = () => {
     <Box style={{backgroundColor:"lightgreen"}}>Box 6</Box>
     <Box style={{backgroundColor:"aqua"}}>Box 7</Box>
     </View>
+
+    {/* DIMENSIONS API */}
+     <View style={{ width: windowWidth > 500 ? '40%' : '80%',height: windowHeight > 600 ? 200 : 140, display:'flex',alignItems:'center',justifyContent:"center",backgroundColor:'aqua'}}>
+      <Text style={{ fontSize: windowWidth > 500 ? 50 : 24 }}>Dimesions API</Text>
+     </View>
     </ScrollView>
    </View>
   )
