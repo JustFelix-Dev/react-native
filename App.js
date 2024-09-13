@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, Button, Dimensions, Image, ImageBackground, Modal, Platform, Pressable, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { ActivityIndicator, Alert, Button, Dimensions, FlatList, Image, ImageBackground, Modal, Platform, Pressable, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Greet from './components/Greet';
 import Box from './components/Box';
 import CustomButton from './components/CustomButtons/CustomButton';
 const logoImg = require("./assets/adaptive-icon.png")
+import ListItem from "./data.json";
 
 const App = () => {
 
@@ -141,6 +142,22 @@ const App = () => {
       <Text style={styles.text}>Dimesions API</Text>
      </View>
      <CustomButton title={'Press Me'} onPress={()=>alert('Pressed!')}/>
+     <View>
+      <FlatList
+      data={ListItem}
+      renderItem={({ item })=>{
+        return (
+          <View key={item.id} style={{borderWidth:2}}>
+            <Text>{item.name}</Text>
+            <Text>{item.type}</Text>
+          </View>
+        )
+      }}
+      keyExtractor={(item,index)=> item.id.toString()}
+      ItemSeparatorComponent={()=><View style={{height:15}}></View>}
+      ListEmptyComponent={<Text>No Item Found!</Text>}
+      />
+     </View>
     </ScrollView>
    </View>
     </SafeAreaView>
