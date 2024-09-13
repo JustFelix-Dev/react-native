@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, Button, Dimensions, Image, ImageBackground, Modal, Pressable, ScrollView, StatusBar, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { ActivityIndicator, Alert, Button, Dimensions, Image, ImageBackground, Modal, Platform, Pressable, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Greet from './components/Greet';
 import Box from './components/Box';
+import CustomButton from './components/CustomButtons/CustomButton';
 const logoImg = require("./assets/adaptive-icon.png")
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
   // console.log({ windowHeight,windowWidth })
 
   const styles = StyleSheet.create({
+    safeContainer: {flex:1},
     container: { flex:1,backgroundColor:"plum",padding:30 },
     box:{height:100,width:100,padding:10,marginHorizontal:10,borderWidth:1,borderColor:'green',borderStyle:"dotted"},
     boxShadow:{
@@ -46,10 +48,26 @@ const App = () => {
       elevation:40
     },
     lightgreen:{backgroundColor:'lightgreen'},
-    lightblue:{backgroundColor:'lightblue'}
+    lightblue:{backgroundColor:'lightblue'},
+    text:{
+       ...Platform.select({
+        ios:{
+          color:'navy',
+          fontWeight:'bold'
+        },
+        android:{
+          color:'navy',
+          fontWeight:'bold',
+        }
+       }),
+       fontSize: windowWidth > 500 ? 50 : 24,
+    }
   })
 
   return (
+
+    // SAFEAREA VIEW
+    <SafeAreaView style={styles.safeContainer}>
    <View style={styles.container}>
     {/* <StatusBar backgroundColor={'plum'} barStyle={'dark-content'} /> */}
 
@@ -119,11 +137,13 @@ const App = () => {
     </View>
 
     {/* DIMENSIONS API */}
-     <View style={{ width: windowWidth > 500 ? '40%' : '80%',height: windowHeight > 600 ? 200 : 140, display:'flex',alignItems:'center',justifyContent:"center",backgroundColor:'aqua'}}>
-      <Text style={{ fontSize: windowWidth > 500 ? 50 : 24 }}>Dimesions API</Text>
+     <View style={{ width: windowWidth > 500 ? '40%' : '80%',height: windowHeight > 600 ? 200 : 140, display:'flex',alignItems:'center',justifyContent:"center",backgroundColor:'aqua',marginTop: Platform.OS === 'android' ? 20: 0}}>
+      <Text style={styles.text}>Dimesions API</Text>
      </View>
+     <CustomButton title={'Press Me'} onPress={()=>alert('Pressed!')}/>
     </ScrollView>
    </View>
+    </SafeAreaView>
   )
 }
 
