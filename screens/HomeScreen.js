@@ -187,7 +187,7 @@ const HomeScreen = ({navigation}) => {
          <Switch value={isDarkMode} onValueChange={handleMode} trackColor={{ false:"#767577",true:"green"}}
          thumbColor={{false:"grey"}}
           />
-         <Button title='Go to About' onPress={()=> navigation.navigate('About')}/>
+         <Button title='Go to About' onPress={()=> navigation.navigate('About',{ name:"Raymond"})}/>
          </View>
          <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0 } >
  
