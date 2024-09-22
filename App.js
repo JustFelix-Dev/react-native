@@ -10,7 +10,17 @@ export default function App(){
     return (
         <NavigationContainer>
             <Drawer.Navigator>
-                <Drawer.Screen name="Dashboard" component={DashboardScreen}/>
+                <Drawer.Screen name="Dashboard" component={DashboardScreen}
+                options={{
+                    title: "My dashboard",
+                    drawerLabel: "Dashboard label",
+                    drawerActiveTintColor:"#111",
+                    drawerActiveBackgroundColor:"lightcoral",
+                    drawerContentStyle:{
+                        backgroundColor:"whitesmoke"
+                    }
+                }}
+                />
                 <Drawer.Screen name="Settings" component={SettingsScreen}/>
             </Drawer.Navigator>
         </NavigationContainer>
