@@ -12,8 +12,9 @@ import AboutScreen from './screens/AboutScreen';
 import NetworkScreen from './screens/NetworkScreen';
 
 const Stack = createNativeStackNavigator();
-const App = () => {
-  
+
+export const AboutStack=()=>{
+
   const screenOptions = {
     headerStyle:{
      backgroundColor: "#6a51ae",
@@ -29,14 +30,22 @@ const App = () => {
       backgroundColor:"#e8e4f3"
     },
    }
+   
+  return (
+    <Stack.Navigator  initialRouteName='Home' 
+    screenOptions={screenOptions}>
+      <Stack.Screen name='Home' component={HomeScreen}/>
+      <Stack.Screen name='About' component={AboutScreen} initialParams={{name:"Guest"}} options={({route})=>({title: route.params.name})} />
+      <Stack.Screen name='Network' component={NetworkScreen}/>
+    </Stack.Navigator>
+  )
+}
+
+
+const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator  initialRouteName='Home' 
-      screenOptions={screenOptions}>
-        <Stack.Screen name='Home' component={HomeScreen}/>
-        <Stack.Screen name='About' component={AboutScreen} initialParams={{name:"Guest"}} options={({route})=>({title: route.params.name})} />
-        <Stack.Screen name='Network' component={NetworkScreen}/>
-      </Stack.Navigator>
+      <AboutStack/>
     </NavigationContainer>
   )
 }

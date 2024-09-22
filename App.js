@@ -4,6 +4,7 @@ import HomeScreen from "./screens/HomeScreen";
 import Profile from "./screens/Profile";
 import CourseList from "./screens/CourseList";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { AboutStack } from "./AppStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -22,9 +23,11 @@ export default function App(){
             component={Profile}
             options={{
             tabBarLabel:"My profile",
-            tabBarIcon: ()=> <Ionicons name="person" size={20} color={'navy'}/>
+            tabBarIcon: ()=> <Ionicons name="person" size={20} color={'navy'}/>,
+            tabBarBadge: 3,
             }}
             />
+               <Tab.Screen name="Nested" component={AboutStack}/>
             </Tab.Navigator>
         </NavigationContainer>
     )
