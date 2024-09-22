@@ -1,29 +1,31 @@
-import "react-native-gesture-handler"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import DashboardScreen from "./screens/DashboardScreen";
-import SettingsScreen from "./screens/SettingsScreen";
+import HomeScreen from "./screens/HomeScreen";
+import Profile from "./screens/Profile";
+import CourseList from "./screens/CourseList";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-const Drawer  = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App(){
-    
     return (
         <NavigationContainer>
-            <Drawer.Navigator>
-                <Drawer.Screen name="Dashboard" component={DashboardScreen}
-                options={{
-                    title: "My dashboard",
-                    drawerLabel: "Dashboard label",
-                    drawerActiveTintColor:"#111",
-                    drawerActiveBackgroundColor:"lightcoral",
-                    drawerContentStyle:{
-                        backgroundColor:"whitesmoke"
-                    }
-                }}
-                />
-                <Drawer.Screen name="Settings" component={SettingsScreen}/>
-            </Drawer.Navigator>
+            <Tab.Navigator  screenOptions={{
+                tabBarLabelPosition:"below-icon",
+                tabBarShowLabel:true,
+                tabBarActiveTintColor: "navy",
+                // tabBarInactiveTintColor:"#333",
+            }}>
+            <Tab.Screen name="Home" component={HomeScreen}/>
+            <Tab.Screen name="Courses" component={CourseList}/>
+            <Tab.Screen name="Profile" 
+            component={Profile}
+            options={{
+            tabBarLabel:"My profile",
+            tabBarIcon: ()=> <Ionicons name="person" size={20} color={'navy'}/>
+            }}
+            />
+            </Tab.Navigator>
         </NavigationContainer>
     )
 }
